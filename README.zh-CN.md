@@ -69,10 +69,10 @@ V3 Admin Vite 是一个免费开源的中后台管理系统基础解决方案，
 3. pnpm 版本 8.x 或最新版
 
 # 克隆项目
-git clone https://github.com/un-pany/v3-admin-vite.git
+git clone https://github.com/liukj98/knowledge_admin_v3.git
 
 # 进入项目目录
-cd v3-admin-vite
+cd knowledge_admin_v3
 
 # 安装依赖
 pnpm i
