@@ -53,9 +53,8 @@ V3 Admin Vite 是一个免费开源的中后台管理系统基础解决方案，
 
 ```bash
 # 配置
-1. 一键安装 .vscode 目录中推荐的插件
-2. node 版本 18.x 或 20+
-3. pnpm 版本 8.x 或最新版
+1. node 版本 18.x 或 20+
+2. pnpm 版本 8.x 或最新版
 
 # 克隆项目
 git clone https://github.com/liukj98/knowledge_admin_v3.git
