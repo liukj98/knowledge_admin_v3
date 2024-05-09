@@ -1,14 +1,14 @@
 import axios, { type AxiosInstance, type AxiosRequestConfig } from "axios"
-import { useUserStoreHook } from "@/store/modules/user"
+// import { useUserStoreHook } from "@/store/modules/user"
 import { ElMessage } from "element-plus"
 import { get, merge } from "lodash-es"
 import { getToken } from "./cache/cookies"
 
-/** 退出登录并强制刷新页面（会重定向到登录页） */
-function logout() {
-  useUserStoreHook().logout()
-  location.reload()
-}
+// /** 退出登录并强制刷新页面（会重定向到登录页） */
+// function logout() {
+//   useUserStoreHook().logout()
+//   location.reload()
+// }
 
 /** 创建请求实例 */
 function createService() {
@@ -39,9 +39,9 @@ function createService() {
         case 0:
           // 本系统采用 code === 0 来表示没有业务错误
           return apiData
-        case 401:
-          // Token 过期时
-          return logout()
+        // case 401:
+        //   // Token 过期时
+        //   return logout()
         default:
           // 不是正确的 code
           ElMessage.error(apiData.message || "Error")
@@ -55,10 +55,10 @@ function createService() {
         case 400:
           error.message = "请求错误"
           break
-        case 401:
-          // Token 过期时
-          logout()
-          break
+        // case 401:
+        //   // Token 过期时
+        //   logout()
+        //   break
         case 403:
           error.message = "拒绝访问"
           break

@@ -1,0 +1,130 @@
+@charset "UTF-8";
+
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  /* background-color: #e8f2ff; */
+}
+
+section {
+  height: 100%;
+}
+
+.el-dialog__body {
+  padding: 10px 15px !important;
+}
+/* 原生滚动条的样式 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background: #535353;
+}
+
+::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  -webkit-box-shadow: inset 0 0 5px transparent;
+  border-radius: 2px;
+  background: #ededed;
+}
+.el-dialog {
+  position: relative;
+  margin: 0 auto 50px;
+  background: #fff;
+  border-radius: 10px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  width: 50%;
+}
+/*# sourceMappingURL=v-im.cssss.map */
+
+/* 修改el-select 下拉箭头的样式 */
+.el-select .el-input .el-select__caret {
+  color: #406dff !important;
+  font-size: 14px;
+  font-weight: 600;
+  transition: transform 0.3s;
+  transform: rotateZ(180deg);
+  cursor: pointer;
+}
+/* 去掉边框 */
+.el-input--suffix .el-input__inner {
+  margin-top: 2px;
+  padding-right: 30px;
+  border: 0px solid #fff;
+}
+/* 修改输入框的样式 */
+.el-input__inner {
+  -webkit-appearance: none;
+  background-color: #fff;
+  background-image: none;
+  border-radius: 4px;
+  border: none;
+  box-sizing: border-box;
+  color: #406dff !important;
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  outline: 0;
+  padding: 0 15px;
+  transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  width: 100%;
+}
+.el-input__inner:hover {
+  border: 0px solid #406dff !important;
+}
+/* 修改下拉款的样式 */
+.el-select-dropdown__item {
+  font-size: 14px;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #606266 !important;
+  height: 34px;
+  line-height: 34px;
+  box-sizing: border-box;
+  cursor: pointer;
+  text-align: center;
+}
+/* 修改折叠面板的样式 */
+.el-collapse-item__content {
+  padding-bottom: 25px;
+  font-size: 13px;
+  color: #303133;
+  line-height: 1.769230769230769;
+  height: 105px;
+  border-radius: 0px 0px 10px 10px;
+  overflow: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0px 8px;
+}
+.el-collapse-item__header {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  line-height: 48px;
+  background-color: #fff;
+  color: #333333;
+  cursor: pointer;
+  border-bottom: 1px solid #ebeef5;
+  font-size: 16px;
+  font-weight: 500;
+  transition: border-bottom-color 0.3s;
+  outline: 0;
+  font-weight: 500;
+  padding-left: 18px;
+}
