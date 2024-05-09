@@ -8,7 +8,9 @@
           </div>
           <div class="card-panel-description">
             <div class="card-panel-text">三元组数量</div>
-            <count-to :startVal="0" :endVal="20000" :duration="2500" class="card-panel-num" />
+            <div class="card-panel-num">
+              <numberScroll :value="3000" :time="10" />
+            </div>
           </div>
         </div>
       </el-row>
@@ -19,7 +21,9 @@
           </div>
           <div class="card-panel-description">
             <div class="card-panel-text">主语数量</div>
-            <count-to :start-val="0" :end-val="30000" :duration="2500" class="card-panel-num" />
+            <div class="card-panel-num">
+              <numberScroll :value="3000" :time="10" />
+            </div>
           </div>
         </div>
       </el-row>
@@ -40,7 +44,7 @@
         <p>机构数量</p>
         <div class="num" style="text-align: center; height: 50px; margin: 8px">
           <span style="color: #538ff6; font-size: 28px">
-            <count-to :start-val="0" :end-val="institutionNum" :duration="2500" />
+            <numberScroll :value="3000" :time="10" />
           </span>
         </div>
       </div>
@@ -48,9 +52,7 @@
         <img src="@/assets/assets/Info_card.png" alt="" />
         <p>人员数量</p>
         <div class="num" style="text-align: center; height: 50px; margin: 8px">
-          <span style="color: #538ff6; font-size: 28px">
-            <count-to :start-val="0" :end-val="staffNum" :duration="2500" /> </span
-          >个
+          <span style="color: #538ff6; font-size: 28px"> <numberScroll :value="3000" :time="10" /> </span>个
         </div>
       </div>
       <div class="Info_card" style="display: inline-block">
@@ -58,7 +60,7 @@
         <p>装备数量</p>
         <div class="num" style="text-align: center; height: 50px; margin: 8px">
           <span style="color: #538ff6; font-size: 28px">
-            <count-to :start-val="0" :end-val="equipmentNum" :duration="2500" />
+            <numberScroll :value="3000" :time="10" />
           </span>
         </div>
       </div>
@@ -67,7 +69,7 @@
         <p>物资数量</p>
         <div class="num" style="text-align: center; height: 50px; margin: 8px">
           <span style="color: #538ff6; font-size: 28px">
-            <count-to :start-val="0" :end-val="goodsNum" :duration="2500" />
+            <numberScroll :value="3000" :time="10" />
           </span>
         </div>
       </div>
@@ -75,53 +77,45 @@
         <img src="@/assets/assets/Info_card.png" alt="" />
         <p>设施数量</p>
         <div class="num" style="text-align: center; height: 50px; margin: 8px">
-          <span style="color: #538ff6; font-size: 28px">
-            <count-to :start-val="0" :end-val="facilityNum" :duration="2500" /> </span
-          >个
+          <span style="color: #538ff6; font-size: 28px"> <numberScroll :value="3000" :time="10" /> </span>个
         </div>
       </div>
       <div class="Info_card" style="display: inline-block">
         <img src="@/assets/assets/Info_card.png" alt="" />
         <p>环境数量</p>
         <div class="num" style="text-align: center; height: 50px; margin: 8px">
-          <span style="color: #538ff6; font-size: 28px">
-            <count-to :start-val="0" :end-val="environmentNum" :duration="2500" /> </span
-          >个
+          <span style="color: #538ff6; font-size: 28px"> <numberScroll :value="3000" :time="10" /> </span>个
         </div>
       </div>
       <div class="Info_card" style="display: inline-block">
         <img src="@/assets/assets/Info_card.png" alt="" />
         <p>事件数量</p>
         <div class="num" style="text-align: center; height: 50px; margin: 8px">
-          <span style="color: #538ff6; font-size: 28px">
-            <count-to :start-val="0" :end-val="incidentNum" :duration="2500" /> </span
-          >个
+          <span style="color: #538ff6; font-size: 28px"> <numberScroll :value="3000" :time="10" /> </span>个
         </div>
       </div>
       <div class="Info_card" style="display: inline-block; margin-right: 30px">
         <img src="@/assets/assets/Info_card.png" alt="" />
         <p>行动数量</p>
         <div class="num" style="text-align: center; height: 50px; margin: 8px">
-          <span style="color: #538ff6; font-size: 28px">
-            <count-to :start-val="0" :end-val="actionNum" :duration="2500" /> </span
-          >个
+          <span style="color: #538ff6; font-size: 28px"> <numberScroll :value="3000" :time="10" /> </span>个
         </div>
       </div>
     </div>
     <el-row :gutter="20" style="margin-top: 24px">
       <el-col :span="12">
-        <!--        <div class="grid-content" style="margin-left: 30px">
+        <div class="grid-content" style="margin-left: 30px">
           <el-card style="height: 450px">
             <div id="spreed" style="height: 380px" />
           </el-card>
-        </div>-->
+        </div>
       </el-col>
       <el-col :span="12">
         <div class="grid-content" style="margin-right: 30px">
           <el-card style="height: 450px">
             <span style="font-weight: bold">图谱关系模式</span>
             <br />
-            <img src="@/assets/assets/relation.png" style="height: 430px; margin-bottom: 10px" />
+            <pie-charts />
           </el-card>
         </div>
       </el-col>
@@ -130,32 +124,31 @@
 </template>
 
 <script>
-import CountTo from "vue3-count-to"
 // import { reqCount } from "@/api"
-// import * as echarts from "echarts"
+import * as echarts from "echarts"
+import NumberScroll from "@/views/show/components/CountTo.vue"
+import PieCharts from "@/views/show/components/Pie.vue"
+
 export default {
-  components: {
-    CountTo
-    // PieChartVer1Vue,
-  },
+  components: { PieCharts, NumberScroll },
   data() {
     return {
       tripleNum: "1",
       objectNum: "2",
-      institutionNum: "",
-      staffNum: "",
-      equipmentNum: "",
-      goodsNum: "",
-      facilityNum: "",
-      environmentNum: "",
-      incidentNum: "",
-      actionNum: "",
+      institutionNum: "3",
+      staffNum: "3",
+      equipmentNum: "3",
+      goodsNum: "4",
+      facilityNum: "4",
+      environmentNum: "5",
+      incidentNum: "6",
+      actionNum: "6",
       subjectNum: 1,
       predicateNum: 109,
       datas: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     }
-  }
-  /*  async created() {
+  },
+  async created() {
     const count = await reqCount()
     this.tripleNum = count.data[0]
     this.objectNum = count.data[1]
@@ -172,15 +165,15 @@ export default {
     console.log(count.data)
     console.log(this.datas[2])
     await this.init(document.getElementById("spreed"))
-  },*/
-  /*mounted() {
+  },
+  mounted() {
     this.init(document.getElementById("spreed"))
   },
   methods: {
-    /!*   goToAll() {
+    /*   goToAll() {
       // 使用 $router.push 导航到名为 "all" 的路由
       this.$router.push("/profile/all")
-    },*!/
+    },*/
     init() {
       const spreedDom = document.getElementById("spreed")
       const spreedChart = echarts.init(spreedDom)
@@ -284,7 +277,7 @@ export default {
       }
       option && spreedChart.setOption(option)
     }
-  }*/
+  }
 }
 </script>
 
@@ -373,7 +366,7 @@ export default {
       }
 
       .card-panel-num {
-        font-size: 20px;
+        font-size: 24px;
       }
     }
   }
@@ -419,9 +412,6 @@ export default {
   margin-bottom: 12px;
 }
 
-.card-panel-num {
-  font-size: 20px;
-}
 .Info_card {
   width: 220px;
   height: 120px;

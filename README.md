@@ -9,6 +9,23 @@
 | ------------ | --------------- | ----------------------------------------------- |
 | github-pages | admin 或 editor | [链接](https://un-pany.github.io/v3-admin-vite) |
 
+## 特性
+
+- **Vue3**：采用 Vue3 + script setup 最新的 Vue3 组合式 API
+- **Element Plus**：Element UI 的 Vue3 版本
+- **Pinia**：传说中的 Vuex5
+- **Vite**：真的很快
+- **Vue Router**：路由路由
+- **TypeScript**：JavaScript 语言的超集
+- **PNPM**：更快速的，节省磁盘空间的包管理工具
+- **Scss**：和 Element Plus 保持一致
+- **CSS 变量**：主要控制项目的布局和颜色
+- **ESlint**：代码校验
+- **Prettier**：代码格式化
+- **Axios**：发送网络请求（已封装好）
+- **UnoCSS**：具有高性能且极具灵活性的即时原子化 CSS 引擎
+- **兼容移动端**: 布局兼容移动端页面分辨率
+
 ## 功能
 
 - **用户管理**：登录、登出演示

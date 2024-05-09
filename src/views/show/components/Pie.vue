@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { reactive } from "vue"
 import Echarts from "@/components/ReEcharts/index.vue"
 
@@ -7,17 +7,7 @@ const colorList = ["#FAAD14", "#13C2C2", "#14A8FF", "#23D688", "#397EF0"]
 const fontSizeList = [12, 14, 16, 18]
 const data = []
 
-const nameList = reactive([
-  "Vue3.0",
-  "Pinia",
-  "Echarts",
-  "Element-Plus",
-  "axios",
-  "Vite",
-  "Pure-Admin",
-  "Vitality",
-  "Husky"
-])
+const nameList = reactive(["机构", "人员", "装备", "物资", "设施", "环境", "事件", "行动"])
 nameList.forEach((item, index) => {
   const valueIndex = index % valueList.length
   const colorIndex = index % colorList.length
