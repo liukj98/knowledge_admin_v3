@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useRouter } from "vue-router"
+// import { useRouter } from "vue-router"
 import { storeToRefs } from "pinia"
 import { useAppStore } from "@/store/modules/app"
 import { useSettingsStore } from "@/store/modules/settings"
@@ -17,7 +17,7 @@ import { useLayoutMode } from "@/hooks/useLayoutMode"
 
 const { isMobile } = useDevice()
 const { isTop } = useLayoutMode()
-const router = useRouter()
+// const router = useRouter()
 const appStore = useAppStore()
 const userStore = useUserStore()
 const settingsStore = useSettingsStore()
@@ -29,10 +29,10 @@ const toggleSidebar = () => {
 }
 
 /** 登出 */
-const logout = () => {
-  userStore.logout()
-  router.push("/login")
-}
+// const logout = () => {
+//   userStore.logout()
+//   router.push("/login")
+// }
 </script>
 
 <template>
@@ -63,9 +63,9 @@ const logout = () => {
             <a target="_blank" href="https://gitee.com/un-pany/v3-admin-vite">
               <el-dropdown-item>Gitee</el-dropdown-item>
             </a>
-            <el-dropdown-item divided @click="logout">
+            <!-- <el-dropdown-item divided @click="logout">
               <span style="display: block">退出登录</span>
-            </el-dropdown-item>
+            </el-dropdown-item> -->
           </el-dropdown-menu>
         </template>
       </el-dropdown>
