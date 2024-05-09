@@ -16,6 +16,8 @@ import "element-plus/theme-chalk/dark/css-vars.css"
 import "vxe-table/lib/style.css"
 import "vxe-table-plugin-element/dist/style.css"
 import "@/styles/index.scss"
+// 引入 echarts
+import * as echarts from "echarts"
 
 const app = createApp(App)
 
@@ -26,6 +28,8 @@ loadSvg(app)
 /** 加载自定义指令 */
 loadDirectives(app)
 
+// 全局挂载 echarts
+app.config.globalProperties.$echarts = echarts
 app.use(store).use(router)
 router.isReady().then(() => {
   app.mount("#app")
