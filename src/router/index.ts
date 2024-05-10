@@ -123,6 +123,12 @@ export const constantRoutes: RouteRecordRaw[] = [
         meta: { title: "智能问答", keepAlive: true }
       },
       {
+        path: "nlpResult",
+        component: () => import("@/views/application/nlpResult.vue"),
+        name: "NlpResult",
+        meta: { title: "智能问答结果", keepAlive: true }
+      },
+      {
         path: "graphLang",
         component: () => import("@/views/application/graphLang.vue"),
         name: "GraphLang",

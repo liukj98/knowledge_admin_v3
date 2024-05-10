@@ -139,13 +139,11 @@ export default {
       }
     },
 
-    questioning(wenda) {
-      if (wenda === undefined && this.question === "") {
+    questioning() {
+      if (this.question === "") {
         this.$message.warning("搜索内容不能为空哦！")
-      } else if (wenda) {
-        this.$router.push("/search/nlp?nlp=" + wenda)
       } else {
-        this.$router.push("/search/nlp?nlp=" + this.question)
+        this.$router.push("/application/nlpResult?nlp=" + this.question)
       }
     },
     // name——根据title提示的书院名称
