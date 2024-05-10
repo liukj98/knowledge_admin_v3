@@ -38,7 +38,7 @@ export default defineComponent({
       const step = (value * 10) / (this.time * 100)
       let current = 0
       let start = this.oldValue
-      let t = setInterval(function () {
+      let t = setInterval(() => {
         start += step
         if (start > this.value) {
           clearInterval(t)

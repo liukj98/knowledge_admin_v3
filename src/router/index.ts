@@ -172,6 +172,12 @@ export const constantRoutes: RouteRecordRaw[] = [
         component: () => import("@/views/management/log.vue"),
         name: "Log",
         meta: { title: "处理日志", keepAlive: true }
+      },
+      {
+        path: "fusion",
+        component: () => import("@/views/management/fusion.vue"),
+        name: "Fusion",
+        meta: { title: "知识融合", keepAlive: true }
       }
     ]
   }
