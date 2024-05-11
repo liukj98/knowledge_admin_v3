@@ -16,9 +16,9 @@
           </div>
         </div>
       </div>
-      <div v-for="item in searchList" :key="item.relation" class="main1">
-        <div class="a">{{ item.subject }}的{{ item.relation }}</div>
-        <div>{{ item.objectItem }}</div>
+      <div v-for="item in searchList" :key="item?.relation" class="main1">
+        <div class="a">{{ item?.subject }}的{{ item?.relation }}</div>
+        <div>{{ item?.objectItem }}</div>
       </div>
       <div v-if="searchList.length === 0" class="main" style="text-align: center">暂无搜索结果</div>
     </div>
