@@ -1,4 +1,4 @@
 <template>
-  <div>融合</div>
+  <div>智能推荐</div>
 </template>
 <script></script>
