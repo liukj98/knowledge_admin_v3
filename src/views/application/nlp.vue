@@ -68,6 +68,8 @@
 
 <script>
 import * as echarts from "echarts"
+import { getGraphDataApi } from "@/api/data-integeration"
+import { ElMessage } from "element-plus"
 
 const delay = (function () {
   let timer = 0
@@ -557,12 +559,54 @@ export default {
       }
     },
 
-    questioning() {
-      if (this.question === "") {
-        this.$message.warning("搜索内容不能为空哦！")
-      } else {
-        window.location.reload()
+    generateGraphData(graphData) {
+      const datas = []
+      const links = []
+      const configObj = {
+        symbolSize: 50,
+        category: "2"
       }
+
+      // 处理 graph 对象
+      const graphObj = graphData.graph
+
+      if (graphObj.node) {
+        const nodeObj = { ...configObj, name: graphObj.node, id: graphObj.node }
+        datas.push(nodeObj)
+      }
+
+      if (graphObj.relation) {
+        const keys = Object.keys(graphObj.relation)
+        for (const rel of keys) {
+          const val = graphObj.relation[rel]
+          const relObj = {
+            source: graphObj.node,
+            target: val,
+            value: rel
+          }
+          const nodeObj = { ...configObj, name: val, id: val }
+          links.push(relObj)
+          datas.push(nodeObj)
+        }
+      }
+      return { datas, links }
+    },
+
+    async questioning() {
+      try {
+        const res = await getGraphDataApi({ question: this.question })
+        const { data } = res
+        const { datas, links } = this.generateGraphData(data)
+        console.log(datas, links)
+      } catch (error) {
+        ElMessage.error("查找失败")
+      }
+
+      // if (this.question === "") {
+      //   this.$message.warning("搜索内容不能为空哦！")
+      // } else {
+      //   window.location.reload()
+      // }
     },
     // name——根据title提示的书院名称
     load() {
