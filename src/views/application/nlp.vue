@@ -19,23 +19,24 @@
     <div class="bottom_bg">
       <div style="text-align: center">
         <input v-model.trim="question" type="text" placeholder="请输入问题" class="search" />
-        <el-button el-icon="search" type="submit" class="btnsearch" @click="questioning()">
+        <el-button el-icon="search" class="btnsearch" @click="questioning()">
           <el-icon><Search /></el-icon
         ></el-button>
       </div>
       <div style="text-align: center; margin-top: 40px; color: #6c6b6b">
         搜索推荐 :
-        <span v-for="item in RecommendList" :key="item.id">
+        <span style="color: #e6a23c">仁爱礁位置和坐标</span>
+        <!--        <span v-for="item in RecommendList" :key="item.id">
           <router-link class="s" :to="`/profile/index/?id=` + item.id" style="{padding: 2px; color: #e4e7ea}">{{
             item.academyName
           }}</router-link>
-        </span>
+        </span>-->
       </div>
       <div v-if="searchList.length !== 0" class="wrapper">
         <div class="section">
           <div v-for="item in searchList" :key="item?.relation" class="main1">
-            <div class="a">{{ item?.subject }}的{{ item?.relation }}</div>
-            <div>{{ item?.objectItem }}</div>
+            <div class="a">{{ item?.subjectName }}的{{ item?.relation }}</div>
+            <div>{{ item?.objectName }}</div>
           </div>
           <div v-if="searchList.length === 0" class="main" style="text-align: center">暂无搜索结果</div>
         </div>
@@ -44,8 +45,6 @@
         </div>
         <div class="res">
           <div>
-            <a class="aToHome" style="margin-left: 30px" @click="toHome">返回首页 ></a>
-
             <el-pagination
               v-if="searchList.length !== 0"
               style="margin-left: 500px"
@@ -66,61 +65,23 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import * as echarts from "echarts"
 import { getGraphDataApi } from "@/api/data-integeration"
 import { ElMessage } from "element-plus"
-
-const delay = (function () {
-  let timer = 0
-  return function (callback, ms) {
-    clearTimeout(timer)
-    timer = setTimeout(callback, ms)
-  }
-})()
 
 export default {
   name: "HomeView",
   data() {
     return {
-      nlp: "仁爱礁位置在哪",
       page: 1,
       pageSize: 10,
       total: 1,
-      searchList: [
-        {
-          id: "1",
-          academyId: "1",
-          subject: "仁爱礁",
-          objectItem: "南沙群岛",
-          relation: "位置",
-          isDeleted: 0,
-          objectId: "1999"
-        }
-      ],
+      searchList: [],
       echart: null,
       nodes: [],
-      datas: [
-        {
-          name: "约5.6公里",
-          id: 1,
-          symbolSize: 50,
-          category: "2"
-        },
-        {
-          name: "Ren'ai Jiao",
-          id: 2007,
-          symbolSize: 50,
-          category: "2"
-        }
-      ],
-      links: [
-        {
-          source: "1",
-          target: "2007",
-          value: "礁坪面积"
-        }
-      ],
+      datas: [],
+      links: [],
       radio1: 1,
       form: {
         source: "",
@@ -130,26 +91,12 @@ export default {
         page: 1,
         pageSize: 10
       },
-      options: [
-        {
-          value: 0,
-          label: "实体查询"
-        },
-        {
-          value: 1,
-          label: "路径查找"
-        },
-        {
-          value: 2,
-          label: "智能问答"
-        }
-      ],
       value: 0,
       area: "",
       question: "", // 问答内容
       province: "",
 
-      title: "", // 输入的书院信息
+      title: "",
       search: [],
       academiesList: [],
       AList: [],
@@ -328,11 +275,8 @@ export default {
       }
     },
 
-    getRandom(min, max) {
-      return Math.floor(Math.random() * (max - min + 1) + min)
-    },
-
     generateGraphData(graphData) {
+      const searchList = []
       const datas = []
       const links = []
       const configObj = {
@@ -342,38 +286,50 @@ export default {
 
       // 处理 graph 对象
       const graphObj = graphData.graph
-
-      if (graphObj.node) {
-        const nodeObj = { ...configObj, name: graphObj.node, id: graphObj.node }
-        datas.push(nodeObj)
-      }
-
-      if (graphObj.relation) {
-        const keys = Object.keys(graphObj.relation)
-        for (const rel of keys) {
-          const val = graphObj.relation[rel]
-          if (val === "南沙群岛") continue
-          const relObj = {
-            source: graphObj.node,
-            target: val,
-            value: rel
-          }
-          const nodeObj = { ...configObj, name: val, id: val }
-          links.push(relObj)
-          datas.push(nodeObj)
+      const answerObj = graphData.answer
+      const keys = Object.keys(graphObj)
+      let mainNodeId
+      let subjectName
+      for (const point of keys) {
+        if (graphObj[point].relationId == -1) {
+          mainNodeId = graphObj[point].id
+          subjectName = graphObj[point].name
         }
       }
-      return { datas, links }
+      const answerKey = Object.keys(answerObj)
+      for (const answer of answerKey) {
+        const searchObj = { subjectName: subjectName, objectName: answerObj[answer], relation: answer }
+        searchList.push(searchObj)
+      }
+      for (const point of keys) {
+        if (graphObj[point].relationId == -1) {
+          const nodeObj = { symbolSize: 70, category: "1", name: graphObj[point].name, id: graphObj[point].id }
+          datas.push(nodeObj)
+        } else {
+          const nodeObj = { ...configObj, name: graphObj[point].name, id: graphObj[point].id }
+          const val = graphObj[point].id
+          const relObj = {
+            source: mainNodeId,
+            target: val,
+            value: graphObj[point].name
+          }
+          datas.push(nodeObj)
+          links.push(relObj)
+        }
+      }
+      return { searchList, datas, links }
     },
 
     async questioning() {
       try {
         const res = await getGraphDataApi({ question: this.question })
         const { data } = res
-        const { datas, links } = this.generateGraphData(data)
+        console.log("data", data)
+        const { searchList, datas, links } = this.generateGraphData(data)
         console.log(datas, links)
         this.datas = datas
         this.links = links
+        this.searchList = searchList
         this.drawChart()
       } catch (error) {
         ElMessage.error("查找失败")

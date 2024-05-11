@@ -1,4 +1,4 @@
 <template>
   <div>更新</div>
 </template>
-<script></script>
+<script lang="ts" setup></script>

@@ -1,4 +1,4 @@
 <template>
   <div>融合</div>
 </template>
-<script></script>
+<script lang="ts" setup></script>

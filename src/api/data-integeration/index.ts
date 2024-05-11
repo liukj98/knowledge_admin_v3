@@ -9,3 +9,10 @@ export function getGraphDataApi(params: Graph.GetGraphRequestData) {
     params
   })
 }
+
+/*export function getCount() {
+  return request<>({
+    url: "/statistics/get",
+    method: "get"
+  })
+}*/

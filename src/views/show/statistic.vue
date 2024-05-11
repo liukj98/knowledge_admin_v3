@@ -28,10 +28,6 @@
         </div>
       </el-row>
       <div class="middle-pic">
-        <!--        <div class="btn-group">
-          <div class="btn-sjzc" @click="goToAll">查看整体数据</div>
-          &lt;!&ndash;          <div class="btn-ckbz">查看帮助</div>&ndash;&gt;
-        </div>-->
         <p class="title">图谱展示</p>
         <p class="introduce">
           基于抽取到的知识三元组，进行知识融合处理，构建形成知识图谱，对最终构建的知识图谱进行可视化展示，展示图谱模式、图谱描述、实体数量、关系数量等信息<br />
@@ -128,6 +124,7 @@
 import * as echarts from "echarts"
 import NumberScroll from "@/views/show/components/CountTo.vue"
 import PieCharts from "@/views/show/components/Pie.vue"
+import axios from "axios"
 
 export default {
   components: { PieCharts, NumberScroll },
@@ -149,18 +146,30 @@ export default {
     }
   },
   async created() {
-    const count = await reqCount()
-    this.tripleNum = count.data[0]
-    this.objectNum = count.data[1]
-    this.institutionNum = count.data[2]
-    this.staffNum = count.data[3]
-    this.equipmentNum = count.data[4]
-    this.goodsNum = count.data[5]
-    this.facilityNum = count.data[6]
-    this.environmentNum = count.data[7]
-    this.incidentNum = count.data[8]
-    this.actionNum = count.data[9]
-    this.datas = count.data
+    let count
+    axios({
+      method: "get",
+      url: "http://121.43.60.137:8897/statistics/get"
+    }).then(function (response) {
+      console.log("123isjdios")
+      console.log(response.data)
+      count = response.data.data
+    })
+
+    console.log("count")
+    console.log(count)
+    // const count = await reqCount()
+    this.tripleNum = count.tripleAmount
+    this.objectNum = count.subjectAmount
+    this.institutionNum = count.institutionAmount
+    this.staffNum = count.personnelAmount
+    this.equipmentNum = count.equipmentAmount
+    this.goodsNum = count.materialAmount
+    this.facilityNum = count.facilityAmount
+    this.environmentNum = count.envAmount
+    this.incidentNum = count.eventAmount
+    this.actionNum = count.actionAmount
+    this.datas = count
     console.log("count.data")
     console.log(count.data)
     console.log(this.datas[2])
@@ -170,10 +179,6 @@ export default {
     this.init(document.getElementById("spreed"))
   },
   methods: {
-    /*   goToAll() {
-      // 使用 $router.push 导航到名为 "all" 的路由
-      this.$router.push("/profile/all")
-    },*/
     init() {
       const spreedDom = document.getElementById("spreed")
       const spreedChart = echarts.init(spreedDom)
