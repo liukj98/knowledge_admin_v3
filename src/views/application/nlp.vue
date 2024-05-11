@@ -103,139 +103,13 @@ export default {
       datas: [
         {
           name: "约5.6公里",
-          id: 2003,
-          symbolSize: 50,
-          category: "2"
-        },
-        {
-          name: "吉福兹号",
-          id: 2,
-          symbolSize: 50,
-          category: "2"
-        },
-        {
-          name: "51.62平方公里",
-          id: 2006,
-          symbolSize: 50,
-          category: "2"
-        },
-        {
-          name: "断节",
-          id: 2011,
-          symbolSize: 50,
-          category: "2"
-        },
-        {
-          name: "汤姆斯第二滩",
-          id: 2004,
-          symbolSize: 50,
-          category: "2"
-        },
-        {
-          name: "三沙市",
-          id: 2014,
-          symbolSize: 50,
-          category: "2"
-        },
-        {
-          name: "仁爱礁",
           id: 1,
-          symbolSize: 70,
-          category: "0"
-        },
-        {
-          name: "21.37平方公里",
-          id: 2007,
-          symbolSize: 50,
-          category: "2"
-        },
-        {
-          name: "Second Thomas Shoal",
-          id: 2010,
-          symbolSize: 50,
-          category: "2"
-        },
-        {
-          name: "环礁",
-          id: 2001,
-          symbolSize: 50,
-          category: "2"
-        },
-        {
-          name: "美海军EP-3侦察机",
-          id: 5,
-          symbolSize: 50,
-          category: "2"
-        },
-        {
-          name: "南沙群岛",
-          id: 1999,
-          symbolSize: 70,
-          category: "1"
-        },
-        {
-          name: "572000",
-          id: 2015,
-          symbolSize: 50,
-          category: "2"
-        },
-        {
-          name: "15公里",
-          id: 2002,
-          symbolSize: 50,
-          category: "2"
-        },
-        {
-          name: "渔业资源丰富",
-          id: 2008,
-          symbolSize: 50,
-          category: "2"
-        },
-        {
-          name: "中国",
-          id: 2017,
-          symbolSize: 50,
-          category: "2"
-        },
-        {
-          name: "热带海洋气候",
-          id: 2016,
-          symbolSize: 50,
-          category: "2"
-        },
-        {
-          name: "北纬9度39-48分，东经115度51-54分",
-          id: 2000,
-          symbolSize: 50,
-          category: "2"
-        },
-        {
-          name: "中国海监75号",
-          id: 6,
-          symbolSize: 50,
-          category: "2"
-        },
-        {
-          name: "南沙群岛",
-          id: 2013,
-          symbolSize: 50,
-          category: "2"
-        },
-        {
-          name: "仁爱暗沙",
-          id: 2005,
-          symbolSize: 50,
-          category: "2"
-        },
-        {
-          name: "第二托马斯礁",
-          id: 2012,
           symbolSize: 50,
           category: "2"
         },
         {
           name: "Ren'ai Jiao",
-          id: 2009,
+          id: 2007,
           symbolSize: 50,
           category: "2"
         }
@@ -245,111 +119,6 @@ export default {
           source: "1",
           target: "2007",
           value: "礁坪面积"
-        },
-        {
-          source: "1",
-          target: "2015",
-          value: "邮政编码"
-        },
-        {
-          source: "1",
-          target: "1999",
-          value: "位置"
-        },
-        {
-          source: "1",
-          target: "2001",
-          value: "特征"
-        },
-        {
-          source: "1",
-          target: "2",
-          value: "闯入者"
-        },
-        {
-          source: "1",
-          target: "2012",
-          value: "别名"
-        },
-        {
-          source: "1",
-          target: "2013",
-          value: "所属地区"
-        },
-        {
-          source: "1",
-          target: "2003",
-          value: "宽度"
-        },
-        {
-          source: "1",
-          target: "2006",
-          value: "环礁面积"
-        },
-        {
-          source: "1",
-          target: "2009",
-          value: "外文名"
-        },
-        {
-          source: "1",
-          target: "2005",
-          value: "1947年名称"
-        },
-        {
-          source: "1",
-          target: "2011",
-          value: "别名"
-        },
-        {
-          source: "1",
-          target: "2014",
-          value: "政府驻地"
-        },
-        {
-          source: "1",
-          target: "2002",
-          value: "长度"
-        },
-        {
-          source: "1",
-          target: "2017",
-          value: "所属国家"
-        },
-        {
-          source: "1",
-          target: "5",
-          value: "侦察者"
-        },
-        {
-          source: "1",
-          target: "2000",
-          value: "坐标"
-        },
-        {
-          source: "1",
-          target: "2008",
-          value: "临近海域资源"
-        },
-        {
-          source: "1",
-          target: "2004",
-          value: "1935年名称"
-        },
-        {
-          source: "1",
-          target: "6",
-          value: "监察者"
-        },
-        {
-          source: "1",
-          target: "2010",
-          value: "外文名"
-        },
-        {
-          source: "1",
-          target: "2016",
-          value: "气候条件"
         }
       ],
       radio1: 1,
@@ -559,6 +328,10 @@ export default {
       }
     },
 
+    getRandom(min, max) {
+      return Math.floor(Math.random() * (max - min + 1) + min)
+    },
+
     generateGraphData(graphData) {
       const datas = []
       const links = []
@@ -579,6 +352,7 @@ export default {
         const keys = Object.keys(graphObj.relation)
         for (const rel of keys) {
           const val = graphObj.relation[rel]
+          if (val === "南沙群岛") continue
           const relObj = {
             source: graphObj.node,
             target: val,
@@ -598,6 +372,9 @@ export default {
         const { data } = res
         const { datas, links } = this.generateGraphData(data)
         console.log(datas, links)
+        this.datas = datas
+        this.links = links
+        this.drawChart()
       } catch (error) {
         ElMessage.error("查找失败")
       }
