@@ -561,7 +561,7 @@ export default {
       if (this.question === "") {
         this.$message.warning("搜索内容不能为空哦！")
       } else {
-        this.$router.push("/application/nlpResult?nlp=" + this.question)
+        window.location.reload()
       }
     },
     // name——根据title提示的书院名称
