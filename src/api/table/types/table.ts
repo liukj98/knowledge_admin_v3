@@ -1,7 +1,11 @@
 export interface CreateOrUpdateTableRequestData {
   id?: string
-  username: string
+  username?: string
   password?: string
+  input_type?: string
+  input_subject?: string
+  input_predicate?: string
+  input_object?: string
 }
 
 export interface GetTableRequestData {

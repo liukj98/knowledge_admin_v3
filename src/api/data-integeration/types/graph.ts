@@ -34,3 +34,16 @@ export type GetGraphResponseData = ApiResponseData<{
     relation: RelationData
   }
 }>
+
+export type GetCountResponseData = ApiResponseData<{
+  tripleAmount: number
+  subjectAmount: number
+  institutionAmount: number
+  personnelAmount: number
+  equipmentAmount: number
+  materialAmount: number
+  facilityAmount: number
+  envAmount: number
+  eventAmount: number
+  actionAmount: number
+}>

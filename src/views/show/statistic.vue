@@ -9,7 +9,7 @@
           <div class="card-panel-description">
             <div class="card-panel-text">三元组数量</div>
             <div class="card-panel-num">
-              <numberScroll :value="3000" :time="10" />
+              <numberScroll :value="this.tripleNum" :time="10" />
             </div>
           </div>
         </div>
@@ -22,7 +22,7 @@
           <div class="card-panel-description">
             <div class="card-panel-text">主语数量</div>
             <div class="card-panel-num">
-              <numberScroll :value="3000" :time="10" />
+              <numberScroll :value="this.objectNum" :time="10" />
             </div>
           </div>
         </div>
@@ -40,7 +40,7 @@
         <p>机构数量</p>
         <div class="num" style="text-align: center; height: 50px; margin: 8px">
           <span style="color: #538ff6; font-size: 28px">
-            <numberScroll :value="3000" :time="10" />
+            <numberScroll :value="this.institutionNum" :time="10" />
           </span>
         </div>
       </div>
@@ -48,7 +48,7 @@
         <img src="@/assets/assets/Info_card.png" alt="" />
         <p>人员数量</p>
         <div class="num" style="text-align: center; height: 50px; margin: 8px">
-          <span style="color: #538ff6; font-size: 28px"> <numberScroll :value="3000" :time="10" /> </span>个
+          <span style="color: #538ff6; font-size: 28px"> <numberScroll :value="staffNum" :time="10" /> </span>个
         </div>
       </div>
       <div class="Info_card" style="display: inline-block">
@@ -56,7 +56,7 @@
         <p>装备数量</p>
         <div class="num" style="text-align: center; height: 50px; margin: 8px">
           <span style="color: #538ff6; font-size: 28px">
-            <numberScroll :value="3000" :time="10" />
+            <numberScroll :value="equipmentNum" :time="10" />
           </span>
         </div>
       </div>
@@ -65,7 +65,7 @@
         <p>物资数量</p>
         <div class="num" style="text-align: center; height: 50px; margin: 8px">
           <span style="color: #538ff6; font-size: 28px">
-            <numberScroll :value="3000" :time="10" />
+            <numberScroll :value="goodsNum" :time="10" />
           </span>
         </div>
       </div>
@@ -73,28 +73,28 @@
         <img src="@/assets/assets/Info_card.png" alt="" />
         <p>设施数量</p>
         <div class="num" style="text-align: center; height: 50px; margin: 8px">
-          <span style="color: #538ff6; font-size: 28px"> <numberScroll :value="3000" :time="10" /> </span>个
+          <span style="color: #538ff6; font-size: 28px"> <numberScroll :value="facilityNum" :time="10" /> </span>个
         </div>
       </div>
       <div class="Info_card" style="display: inline-block">
         <img src="@/assets/assets/Info_card.png" alt="" />
         <p>环境数量</p>
         <div class="num" style="text-align: center; height: 50px; margin: 8px">
-          <span style="color: #538ff6; font-size: 28px"> <numberScroll :value="3000" :time="10" /> </span>个
+          <span style="color: #538ff6; font-size: 28px"> <numberScroll :value="environmentNum" :time="10" /> </span>个
         </div>
       </div>
       <div class="Info_card" style="display: inline-block">
         <img src="@/assets/assets/Info_card.png" alt="" />
         <p>事件数量</p>
         <div class="num" style="text-align: center; height: 50px; margin: 8px">
-          <span style="color: #538ff6; font-size: 28px"> <numberScroll :value="3000" :time="10" /> </span>个
+          <span style="color: #538ff6; font-size: 28px"> <numberScroll :value="incidentNum" :time="10" /> </span>个
         </div>
       </div>
       <div class="Info_card" style="display: inline-block; margin-right: 30px">
         <img src="@/assets/assets/Info_card.png" alt="" />
         <p>行动数量</p>
         <div class="num" style="text-align: center; height: 50px; margin: 8px">
-          <span style="color: #538ff6; font-size: 28px"> <numberScroll :value="3000" :time="10" /> </span>个
+          <span style="color: #538ff6; font-size: 28px"> <numberScroll :value="actionNum" :time="10" /> </span>个
         </div>
       </div>
     </div>
@@ -124,52 +124,39 @@
 import * as echarts from "echarts"
 import NumberScroll from "@/views/show/components/CountTo.vue"
 import PieCharts from "@/views/show/components/Pie.vue"
-import axios from "axios"
-
+import { getCount } from "@/api/data-integeration/index.ts"
 export default {
   components: { PieCharts, NumberScroll },
   data() {
     return {
-      tripleNum: "1",
-      objectNum: "2",
-      institutionNum: "3",
-      staffNum: "3",
-      equipmentNum: "3",
-      goodsNum: "4",
-      facilityNum: "4",
-      environmentNum: "5",
-      incidentNum: "6",
-      actionNum: "6",
-      subjectNum: 1,
-      predicateNum: 109,
-      datas: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+      tripleNum: "",
+      objectNum: "",
+      institutionNum: "",
+      staffNum: "",
+      equipmentNum: "",
+      goodsNum: "",
+      facilityNum: "",
+      environmentNum: "",
+      incidentNum: "",
+      actionNum: "",
+      subjectNum: "",
+      predicateNum: "",
+      datas: []
     }
   },
   async created() {
-    let count
-    axios({
-      method: "get",
-      url: "http://121.43.60.137:8897/statistics/get"
-    }).then(function (response) {
-      console.log("123isjdios")
-      console.log(response.data)
-      count = response.data.data
-    })
-
-    console.log("count")
-    console.log(count)
-    // const count = await reqCount()
-    this.tripleNum = count.tripleAmount
-    this.objectNum = count.subjectAmount
-    this.institutionNum = count.institutionAmount
-    this.staffNum = count.personnelAmount
-    this.equipmentNum = count.equipmentAmount
-    this.goodsNum = count.materialAmount
-    this.facilityNum = count.facilityAmount
-    this.environmentNum = count.envAmount
-    this.incidentNum = count.eventAmount
-    this.actionNum = count.actionAmount
-    this.datas = count
+    const count = await getCount()
+    this.tripleNum = count.data.tripleAmount
+    console.log("tripleNum:", this.tripleNum)
+    this.objectNum = count.data.subjectAmount
+    this.institutionNum = count.data.institutionAmount
+    this.staffNum = count.data.personnelAmount
+    this.equipmentNum = count.data.equipmentAmount
+    this.goodsNum = count.data.materialAmount
+    this.facilityNum = count.data.facilityAmount
+    this.environmentNum = count.data.envAmount
+    this.incidentNum = count.data.eventAmount
+    this.actionNum = count.data.actionAmount
     console.log("count.data")
     console.log(count.data)
     console.log(this.datas[2])
@@ -224,35 +211,35 @@ export default {
           id: "area",
           data: [
             {
-              value: this.datas[2],
+              value: this.institutionNum,
               groupId: "机构"
             },
             {
-              value: this.datas[3],
+              value: this.staffNum,
               groupId: "人员"
             },
             {
-              value: this.datas[4],
+              value: this.equipmentNum,
               groupId: "装备"
             },
             {
-              value: this.datas[5],
+              value: this.goodsNum,
               groupId: "物资"
             },
             {
-              value: this.datas[6],
+              value: this.facilityNum,
               groupId: "设施"
             },
             {
-              value: this.datas[7],
+              value: this.environmentNum,
               groupId: "环境"
             },
             {
-              value: this.datas[8],
+              value: this.incidentNum,
               groupId: "事件"
             },
             {
-              value: this.datas[9],
+              value: this.actionNum,
               groupId: "行动"
             }
           ],

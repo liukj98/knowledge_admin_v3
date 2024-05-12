@@ -65,7 +65,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import * as echarts from "echarts"
 import { getGraphDataApi } from "@/api/data-integeration"
 import { ElMessage } from "element-plus"

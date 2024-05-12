@@ -34,7 +34,7 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
       strictPort: false,
       /** 接口代理 */
       proxy: {
-        "/nlp": {
+        "/zstp": {
           target: "http://121.43.60.137:8897",
           ws: true,
           /** 是否允许跨域 */
