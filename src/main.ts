@@ -1,13 +1,13 @@
 // core
 import { createApp } from "vue"
 import App from "@/App.vue"
-import store from "@/store"
-import router from "@/router"
-import "@/router/permission"
+import store from "@/store/zstp"
+import router from "@/router/zstp"
+import "@/router/zstp/permission"
 // load
-import { loadSvg } from "@/icons"
-import { loadPlugins } from "@/plugins"
-import { loadDirectives } from "@/directives"
+import { loadSvg } from "@/icons/zstp"
+import { loadPlugins } from "@/plugins/zstp"
+import { loadDirectives } from "@/directives/zstp"
 // css
 import "uno.css"
 import "normalize.css"
@@ -15,7 +15,7 @@ import "element-plus/dist/index.css"
 import "element-plus/theme-chalk/dark/css-vars.css"
 import "vxe-table/lib/style.css"
 import "vxe-table-plugin-element/dist/style.css"
-import "@/styles/index.scss"
+import "@/styles/zstp/index.scss"
 // 引入 echarts
 import * as echarts from "echarts"
 

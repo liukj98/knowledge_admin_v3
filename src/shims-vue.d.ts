@@ -1,0 +1,22 @@
+declare module "@/views/zstp/construction/structure.vue"
+declare module "@/views/zstp/construction/unstructured.vue"
+declare module "@/views/zstp/show/statistic.vue"
+declare module "@/views/zstp/show/allData.vue"
+declare module "@/views/zstp/application/singleEntity.vue"
+declare module "@/views/zstp/application/path.vue"
+
+declare module "@/views/zstp/application/nlp.vue"
+declare module "@/views/zstp/management/map.vue"
+
+declare module "@/views/zstp/management/update.vue"
+declare module "@/views/zstp/management/fusion.vue"
+
+declare module "@/views/zstp/application/multiElement.vue"
+declare module "@/views/zstp/application/nlp.vue"
+declare module "@/views/zstp/management/update.vue"
+declare module "@/views/zstp/management/fusion.vue"
+declare module "@/views/zstp/application/graphLang.vue"
+declare module "@/views/zstp/construction/design.vue"
+declare module "@/views/zstp/management/model.vue"
+declare module "@/views/zstp/management/dataBase.vue"
+declare module "@/views/zstp/management/project.vue"

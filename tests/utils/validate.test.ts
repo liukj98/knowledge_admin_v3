@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { isArray } from "@/utils/validate"
+import { isArray } from "@/utils/zstp/validate"
 
 describe("isArray", () => {
   it("String", () => {
